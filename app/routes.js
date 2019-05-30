@@ -74,7 +74,7 @@ module.exports = function (app) {
     });
 
     // application -------------------------------------------------------------
-    app.get('*', function (req, res) {
+    app.get('/', function (req, res) {
         res.sendFile(path.join(__dirname, '../public','app.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
