@@ -12,7 +12,7 @@ module.exports = function (app) {
         user.count(query_doc, function(err, doc){
             if(doc === 1){//验证成功,转到mainpage
                 flag=true;
-                res.redirect('/mainpage');
+                res.redirect(200, '/mainpage');
                 res.json(flag);
             }else{
                 res.redirect('/login');
@@ -48,26 +48,56 @@ module.exports = function (app) {
     });
 
     app.post('/api/operation', function (req, res) {
-        let getUser = req.body.userId;
+        let userId = req.body.userId;
         let type = req.body.type;//1（存款)2（取款）3（购买定期）4（购买基金）5（购买股票）
         let account = req.body.account;
-        //need write connect db and get the operation info
-        let nowBalance;
-        let dingQi, fund, stock;
-        if (type === 1) nowBalance += account;
-        else if (type === 2) nowBalance -= account;
-        else if (type === 3) {
-            nowBalance -= account;
-            dingQi += account;
-        }else if (type === 4){
-            nowBalance -= account;
-            fund += account;
-        }else if (type === 5){
-            nowBalance -= account;
-            stock += account;
-        }
-        //need write connect db and write into info
-        let operationSuccess;
+        var query_doc = {user_id: userId};
+        var nowuser={};
+        let operationSuccess = true;
+        user.find(query_doc).exec(function(err,result){
+            var Balance=result[0].account;
+            var dingQi=result[0].dingqi;
+            var fund=result[0].fund;
+            var stock=result[0].stock;
+            if (type === 1) Balance += account;
+            else if (type === 2) {
+                if (Balance < account) 
+                    operationSuccess = false; 
+                else Balance -= account;
+            }
+            else if (type === 3) {
+                if (Balance < account) 
+                    operationSuccess = false; 
+                else{
+                    Balance -= account;
+                    dingQi += account;
+                }
+            }else if (type === 4){
+                if (Balance < account) 
+                    operationSuccess = false; 
+                else {
+                    Balance -= account;
+                    fund += account;
+                }
+            }else if (type === 5){
+                if (Balance < account) 
+                    operationSuccess = false;
+                else { 
+                    Balance -= account;
+                    stock += account;
+                }
+            }
+            nowuser.account=Balance;
+            nowuser.dingQi=dingQi;
+            nowuser.fund=fund;
+            nowuser.stock=stock;
+        });
+        if (operationSuccess){
+            user.update(query_doc,nowuser,function(err,res){
+                if (err) throw err;
+                console.log("文档更新成功");
+        })}
+    
         res.json(operationSuccess);
     });
 
@@ -75,12 +105,12 @@ module.exports = function (app) {
         let getUser = req.body.userId;
         let accepterId = req.body.accepterId;
         let account = req.body.account;
-        let result = 0, hasAccepter;
+        let result = 0, hasAccepter = true;
         
         var acc_query={user_id:accepterId};
         user.count(acc_query, function(err, doc){
             if(doc===0){
-                hasAccepter=false;
+                hasAccepter = false;
             }
         });
         if (!hasAccepter) 
@@ -101,12 +131,19 @@ module.exports = function (app) {
                 result = 3;
                 userBalance -= account;
                 accepterBalance += account;
-                var up={ account:accepterBalance };
+
+                var userup={account:userBalance};
+                user.update(query_doc,userup,function(err,res){
+                    if (err) throw err;
+                    console.log("文档更新成功");
+                });
+
+                var up={account:accepterBalance};
                 user.update(acc_query,up,function(err,res){
                     if (err) throw err;
                     console.log("文档更新成功");
                 });
-            }
+                }
         }    
         res.json(result);
     });
@@ -114,5 +151,8 @@ module.exports = function (app) {
     // application -------------------------------------------------------------
     app.get('/', function (req, res) {
         res.sendFile(path.join(__dirname, '../public','app.html')); // load the single view file (angular will handle the page changes on the front-end)
+    });
+    app.get('*', function (req, res) {
+        res.sendFile(path.join(__dirname, '../public/src', '*', '.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
