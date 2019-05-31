@@ -19,6 +19,7 @@ module.exports = function (app) {
             }        
             res.json(flag);
         });
+        console.log("fdsfdfs");
     });
 
     app.post('/api/information', function (req, res) {
