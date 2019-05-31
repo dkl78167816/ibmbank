@@ -11,23 +11,26 @@
     <div class="login">
         <div class="login-wrapper">
             <!-- 往后端传数据 -->
-            <form action="#" method="post">
+            
                 <div class="username-wrapper">
                     <div class="username-picture">
                         <img src="../图标/account.png" alt="">
                     </div>
-                    <input type="text" name="userID" placeholder="用户名">
+                    <input id="accepterId" type="text" name="userID" placeholder="用户名">
                 </div>
             
                 <div class="password-wrapper">
                     <div class="password-picture">
                         <img src="../图标/money.png" alt="">
                     </div>
-                    <input type="text" name="account" placeholder="金额">
+                    <input id="account" type="text" name="account" placeholder="金额">
                 </div>
-                <input id="login" type="submit" value="转账">
-            </form>
+                <!-- 转账接口函数为transfer() -->
+                <input id="login" type="submit" value="转账" onclick="transfer()">
+            
         </div>
     </div>
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/transfer.js"></script>
 </body> 
 </html>

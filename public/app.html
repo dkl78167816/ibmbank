@@ -52,7 +52,7 @@
         </div>
     </div>
   <script>
-    axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.baseURL = 'http://148.100.86.254:8081/';
 
     var app = new Vue({
       el: '#app',
@@ -77,6 +77,17 @@
                 if (res.data === 'true')
                   app.login = true;
             })
+          // if (app.login){
+          //   axios
+          //     .post("/api/login", {
+          //       username: app.form.username, 
+          //       password: app.form.password
+          //     })
+          //     .then(function (res) {
+          //         if (res.data === 'true')
+          //           app.login = true;
+          //     })
+          // }
         },
       }
     })

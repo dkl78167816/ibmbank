@@ -13,46 +13,45 @@
     <div class="login">
         <div class="login-wrapper">
             定期存款
-            <!-- 往后端传数据 -->
-            <form action="#" method="post">
-                <div class="password-wrapper">
+            
+            <div class="password-wrapper">
                     <div class="password-picture">
                         <img src="../图标/money.png" alt="">
                     </div>
-                    <!-- account1为定期存款 -->
-                    <input type="text" name="account1" placeholder="金额">
+                    <!-- account1为定期存款,接口函数为buyFixedMoney() -->
+                    <input id="account-f" type="text" name="account1" placeholder="金额">
                 </div>
-                <input id="login" type="submit" value="购买">
-            </form>
+                <input id="login" type="submit" value="购买" onclick="buyFixedMoney()">
+            
         </div>
 
         <div class="withdraw-wrapper">
             股票
-            <form action="#" method="post">
+            
                 <div class="password-wrapper">
                     <div class="password-picture">
                         <img src="../图标/money.png" alt="">
                     </div>
-                    <!-- account2为股票 -->
-                    <input type="text" name="account2" placeholder="金额">
+                    <!-- account2为股票,接口函数为buyStock() -->
+                    <input id="account-s" type="text" name="account2" placeholder="金额">
                 </div>
-                <input id="login" type="submit" value="购买">
-            </form>
+                <input id="login" type="submit" value="购买" onclick="buyStock()"> 
+            
         </div>
         <div class="fund-wrapper">
             基金
-            <form action="#" method="post">
                     <div class="password-wrapper">
                         <div class="password-picture">
                             <img src="../图标/money.png" alt="">
                         </div>
-                        <!-- account3为基金 -->
-                        <input type="text" name="account3" placeholder="金额">
+                        <!-- account3为基金,接口函数为buyFund() -->
+                        <input id="account-fund" type="text" name="account3" placeholder="金额">
                     </div>
-                    <input id="login" type="submit" value="购买">
-                </form>
+                    <input id="login" type="submit" value="购买" onclick="buyFund()">
         </div>
     </div>
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/manage.js"></script>
 </body>
 
 </html>
