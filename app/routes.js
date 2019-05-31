@@ -8,17 +8,13 @@ module.exports = function (app) {
     // login
     var flag;
     app.post('/api/login', function (req, res) {
-        console.log(req.body.usename);
-        console.log(req.body.password);
-        var query_doc = { user_id: req.body.usename, password: req.body.password };
+        var query_doc = { user_id: req.body.username, password: req.body.password };
         user.count(query_doc, function(err, doc){
             console.log(doc);
             if(doc === 0){//验证成功,转到mainpage
                 flag = false;
-                console.log("eeeeeeeeeeeee");
             }else{
                 flag = true;
-                console.log("ddddddddddddd");
             }        
             res.json(flag);
         });
