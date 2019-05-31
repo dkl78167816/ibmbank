@@ -30,17 +30,6 @@ module.exports = function (app) {
             console.log(result[0]);
             res.json(result); //res.data[0].*
         });
-        // let getUser = req.body.userId;
-        // //need write connect db and get userinfo
-        // let userName, userBalance, fixedTimeDeposit, fund, stock;
-        // let userInfo = {
-        //     userName: userName,
-        //     userBalance: userBalance,
-        //     fixedTimeDeposit: fixedTimeDeposit,
-        //     fund: fund,
-        //     stock: stock
-        // };
-        // res.json(userInfo);
     });
 
     app.post('/api/operation', function (req, res) {
@@ -98,8 +87,8 @@ module.exports = function (app) {
     });
 
     app.post('/api/transfer', function (req, res) {
-        let getUser = req.body.userId;
-        let accepterId = req.body.accepterId;
+        let getUser = req.body.username;
+        let accepterId = req.body.acceptername;
         let account = req.body.account;
         let result = 0, hasAccepter = true;
         

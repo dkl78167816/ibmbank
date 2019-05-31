@@ -134,13 +134,46 @@
         },
 
         ope2: function(){
-
+          axios
+            .post("/api/information", {
+              username: app.form.username, 
+            })
+            .then(function (res) {
+              app.userinfo.userName = res.data[0].user_id;
+              app.userinfo.userBalance = res.data[0].account;
+              app.userinfo.fund = res.data[0].fund;
+              app.userinfo.stock = res.data[0].stock;
+              app.userinfo.fixedTimeDeposit = res.data[0].dingqi;
+              app.info = true;
+            })  
         },
         ope3: function(){
-
+          axios
+            .post("/api/information", {
+              username: app.form.username, 
+            })
+            .then(function (res) {
+              app.userinfo.userName = res.data[0].user_id;
+              app.userinfo.userBalance = res.data[0].account;
+              app.userinfo.fund = res.data[0].fund;
+              app.userinfo.stock = res.data[0].stock;
+              app.userinfo.fixedTimeDeposit = res.data[0].dingqi;
+              app.info = true;
+            })  
         },
         ope4: function(){
-
+          axios
+            .post("/api/information", {
+              username: app.form.username, 
+            })
+            .then(function (res) {
+              app.userinfo.userName = res.data[0].user_id;
+              app.userinfo.userBalance = res.data[0].account;
+              app.userinfo.fund = res.data[0].fund;
+              app.userinfo.stock = res.data[0].stock;
+              app.userinfo.fixedTimeDeposit = res.data[0].dingqi;
+              app.info = true;
+            })  
         },
       }
     })
