@@ -74,29 +74,45 @@
               <h1>云计算银行web应用|个人信息</h1>
             </el-col>
           </el-row>
+          <br/><br/>
           <el-row style="height: 50px">
-            <el-col :offset="4">
-              <span>用户名：{{userinfo.userName}}</span>
+            <el-col :offset="4" :span="1">
+              <span><el-tag>用户名：</el-tag></span>
+            </el-col>
+            <el-col :span="3">
+              <span><el-tag type="info">{{userinfo.userName}}</el-tag></span>
             </el-col>
           </el-row>
           <el-row style="height: 50px">
-            <el-col :offset="4">
-              <span>定期存储金额：{{userinfo.fixedTimeDeposit}}</span>
+            <el-col :offset="4" :span="2">
+              <span><el-tag>定期存储金额：</el-tag></span>
+            </el-col>
+            <el-col :span="3">
+              <span><el-tag type="info">{{userinfo.fixedTimeDeposit}}</el-tag></span>
             </el-col>
           </el-row>
           <el-row style="height: 50px">
-            <el-col :offset="4">
-              <span>账户活期余额：{{userinfo.userBalance}}</span>
+            <el-col :offset="4" :span="2">
+              <span><el-tag>账户活期余额：</el-tag></span>
+            </el-col>
+            <el-col :span="3">
+              <span><el-tag type="info">{{userinfo.userBalance}}</el-tag></span>
             </el-col>
           </el-row>
           <el-row style="height: 50px">
-            <el-col :offset="4">
-              <span>基金：{{userinfo.fund}}</span>
+            <el-col :offset="4" :span="1">
+              <span><el-tag>基金：</el-tag></span>
+            </el-col>
+            <el-col :span="3">
+              <span><el-tag type="info">{{userinfo.fund}}</el-tag></span>
             </el-col>
           </el-row>
           <el-row style="height: 50px">
-            <el-col :offset="4">
-              <span>股票：{{userinfo.stock}}</span>
+            <el-col :offset="4" :span="1">
+              <span><el-tag>股票：</el-tag><el-tag type="info"></el-tag></span>
+            </el-col>
+            <el-col :span="3">
+              <span><el-tag type="info">{{userinfo.stock}}</el-tag></span>
             </el-col>
           </el-row>
           <el-row style="height: 50px">
