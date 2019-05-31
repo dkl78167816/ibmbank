@@ -3,7 +3,7 @@
   "repository": "",
   "name": "bankapp",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "license": "MIT",
   "author": "duke",
   "dependencies": {
