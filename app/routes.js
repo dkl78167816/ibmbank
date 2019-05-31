@@ -8,11 +8,8 @@ module.exports = function (app) {
     // login
     var flag;
     app.post('/api/login', function (req, res) {
-        console.log(req.body.username);
-        console.log(req.body.password);
         var query_doc = { user_id: req.body.username, password: req.body.password };
         user.count(query_doc, function(err, doc){
-            console.log(doc);
             if(doc === 0){
                 flag = false;
             }else{
@@ -76,7 +73,6 @@ module.exports = function (app) {
             nowuser.dingqi=dingQi;
             nowuser.fund=fund;
             nowuser.stock=stock;
-            console.log(nowuser);
             if (operationSuccess){
                 user.update(query_doc,nowuser,function(err,res){
                     if (err) throw err;
