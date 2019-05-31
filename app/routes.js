@@ -8,21 +8,18 @@ module.exports = function (app) {
     // login
     var flag;
     app.post('/api/login', function (req, res) {
-        console.log("fdsfdfs");
         var query_doc = { user_id: req.body.usename, password: req.body.password };
         user.count(query_doc, function(err, doc){
-            if(doc === 1){//验证成功,转到mainpage
-                flag = true;
-                console.log("ddddddddddddd");
-            }else{
+            console.log(doc);
+            if(doc === 0){//验证成功,转到mainpage
                 flag = false;
                 console.log("eeeeeeeeeeeee");
+            }else{
+                flag = true;
+                console.log("ddddddddddddd");
             }        
-            console.log("bbbbbbbbbbbb");
             res.json(flag);
         });
-        console.log("ccccccccccccs");
-        // res.send(200);
     });
 
     app.post('/api/information', function (req, res) {
