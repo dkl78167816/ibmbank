@@ -22,7 +22,7 @@ module.exports = function (app) {
             res.json(flag);
         });
         console.log("ccccccccccccs");
-        res.send(200);
+        // res.send(200);
     });
 
     app.post('/api/information', function (req, res) {
