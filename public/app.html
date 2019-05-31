@@ -265,7 +265,7 @@
             })
             .catch((err) => console.log(err));
         },
-        
+
         myop: function(bankop, localAccount){
           axios
             .post("/api/operation", {
@@ -305,7 +305,7 @@
             localAccount = app.account1;
           else if (bankop === 2)
             localAccount = app.account2;
-          myop(bankop, localAccount);
+          app.myop(bankop, localAccount);
         },
 
         show3: function(){
@@ -336,7 +336,7 @@
             localAccount = account4;
           else if (bankop === 5)
             localAccount = account5;
-          myop(bankop, localAccount);   
+          app.myop(bankop, localAccount);   
         },
 
         returnop1: function(){
