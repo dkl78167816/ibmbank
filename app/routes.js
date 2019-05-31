@@ -23,9 +23,11 @@ module.exports = function (app) {
     });
 
     app.post('/api/information', function (req, res) {
-        var query_doc = {user_id: req.data.username};
+        var query_doc = {user_id: req.body.username};
         user.find(query_doc).exec(function(err,result){
             if(err) throw err;
+            console.log(result);
+            console.log(result[0]);
             res.json(result); //res.data[0].*
         });
         // let getUser = req.body.userId;
