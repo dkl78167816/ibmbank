@@ -35,7 +35,7 @@ module.exports = function (app) {
     app.post('/api/operation', function (req, res) {
         let userId = req.body.username;
         let type = req.body.type;//1（存款)2（取款）3（购买定期）4（购买基金）5（购买股票）
-        let account = req.body.account;
+        let account = Number(req.body.account);
         var query_doc = {user_id: userId};
         var nowuser={};
         let operationSuccess = true;
