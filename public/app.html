@@ -182,7 +182,7 @@
                   <el-input v-model="account3" placeholder="金额"></el-input>
               </el-col> 
               <el-col :offset="1" :span="4">
-                <el-button type="primary" v-on:click="ope2(3)">购买</el-button>
+                <el-button type="primary" v-on:click="ope4(3)">购买</el-button>
               </el-col>
           </el-row>
           <el-row>
@@ -194,7 +194,7 @@
                 <el-input v-model="account4" placeholder="金额"></el-input>
               </el-col> 
               <el-col :offset="1" :span="4">
-                <el-button type="primary" v-on:click="ope2(4)">购买</el-button>
+                <el-button type="primary" v-on:click="ope4(4)">购买</el-button>
               </el-col>
           </el-row>
           <el-row>
@@ -206,7 +206,7 @@
                 <el-input v-model="account5" placeholder="金额"></el-input>
               </el-col> 
               <el-col :offset="1" :span="4">
-                <el-button type="primary" v-on:click="ope2(5)">购买</el-button>
+                <el-button type="primary" v-on:click="ope4(5)">购买</el-button>
               </el-col>
           </el-row>
 
@@ -265,6 +265,21 @@
             })
             .catch((err) => console.log(err));
         },
+        
+        myop: function(bankop, localAccount){
+          axios
+            .post("/api/operation", {
+              username: app.form.username, 
+              type: bankop,
+              account: localAccount
+            })
+            .then(function (res) {
+              if (res.data === true)
+              {
+                alert("操作成功！");
+              }else alert("操作失败");
+            })  
+        },
 
         show1: function(){
           axios
@@ -291,21 +306,6 @@
           else if (bankop === 2)
             localAccount = app.account2;
           myop(bankop, localAccount);
-        },
-
-        myop: function(bankop, localAccount){
-          axios
-            .post("/api/operation", {
-              username: app.form.username, 
-              type: bankop,
-              account: localAccount
-            })
-            .then(function (res) {
-              if (res.data === true)
-              {
-                alert("操作成功！");
-              }else alert("操作失败");
-            })  
         },
 
         show3: function(){
