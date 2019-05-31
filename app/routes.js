@@ -73,7 +73,7 @@ module.exports = function (app) {
                 }
             }
             nowuser.account=Balance;
-            nowuser.dingQi=dingQi;
+            nowuser.dingqi=dingQi;
             nowuser.fund=fund;
             nowuser.stock=stock;
             console.log(nowuser);
@@ -82,9 +82,8 @@ module.exports = function (app) {
                     if (err) throw err;
                     console.log("文档更新成功");
             })}
-        });
-    
-        res.json(operationSuccess);
+            res.json(operationSuccess);
+        });   
     });
 
     app.post('/api/transfer', function (req, res) {
