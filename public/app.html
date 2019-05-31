@@ -12,8 +12,7 @@
 </head>
 <body>
     <div id="app" style="background-color: azure; height: 1200px">
-
-      <div v-if="login === false">
+      <div v-if="login === false"  style="background-image: url(timg.jpg);height: 1000px">
         <el-row style="height: 100px; background-color: blueviolet">
           <el-col :offset="3" :span="21">
             <h1>云计算银行web应用</h1>
@@ -42,7 +41,7 @@
         </el-row>
       </div>
 
-      <div v-if="login && !info && !deposit && !transfer && !bank">
+      <div v-if="login && !info && !deposit && !transfer && !bank"  style="background-image: url(timg.jpg);height: 1000px">
           <el-row style="height: 100px; background-color: blueviolet">
             <el-col :offset="3" :span="21">
               <h1>云计算银行web应用</h1>
@@ -69,7 +68,7 @@
           </el-row>
         </div>
 
-        <div v-if="login && info">
+        <div v-if="login && info"  style="background-image: url(timg.jpg);height: 1000px">
           <el-row style="height: 100px; background-color: blueviolet">
             <el-col :offset="3" :span="21">
               <h1>云计算银行web应用|个人信息</h1>
@@ -107,7 +106,7 @@
           </el-row>
         </div>
 
-        <div v-if="login && deposit">
+        <div v-if="login && deposit"  style="background-image: url(timg.jpg);height: 1000px">
           <el-row style="height: 100px; background-color: blueviolet">
               <el-col :offset="3" :span="21">
                 <h1>云计算银行web应用|个人信息</h1>
@@ -140,7 +139,7 @@
           </el-row>
         </div>
 
-        <div v-if="login && transfer">
+        <div v-if="login && transfer"  style="background-image: url(timg.jpg);height: 1000px">
           <el-row style="height: 100px; background-color: blueviolet">
               <el-col :offset="3" :span="21">
                 <h1>云计算银行web应用|转账</h1>
@@ -167,7 +166,7 @@
           </el-row>
         </div>
 
-        <div v-if="login && bank">
+        <div v-if="login && bank"  style="background-image: url(timg.jpg);height: 1000px">
           <el-row style="height: 100px; background-color: blueviolet">
               <el-col :offset="3" :span="21">
                 <h1>云计算银行web应用|理财业务</h1>
@@ -320,7 +319,7 @@
               account: app.accountTransfer
             })
             .then(function (res) {
-              if (res.data === 0 || res.data === 3) 
+              if (res.data === "0" || res.data === "3") 
                 alert("转账成功");
             })  
         },
