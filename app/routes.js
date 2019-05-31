@@ -1,5 +1,6 @@
-//var Todo = require('./models/todo');
+var mongoose = require("mongoose");
 var user = mongoose.model('user');//引入模型
+
 var path = require('path'); //a module to calculate a path
 
 module.exports = function (app) {
