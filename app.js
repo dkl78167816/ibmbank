@@ -1,3 +1,5 @@
+var mongoose = require("mongoose");
+var user = mongoose.model('user');//引入模型
 // set up ==========================================================
 const express = require('express');  //import node.js express frame
 const app = express(); //create app as express instance
