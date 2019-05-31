@@ -40,12 +40,10 @@ module.exports = function (app) {
         var nowuser={};
         let operationSuccess = true;
         user.find(query_doc).exec(function(err,result){
-            var Balance=result[0].account;
-            var dingQi=result[0].dingqi;
-            var fund=result[0].fund;
-            var stock=result[0].stock;
-            console.log(result[0]);
-            console.log(account);
+            var Balance=Number(result[0].account);
+            var dingQi=Number(result[0].dingqi);
+            var fund=Number(result[0].fund);
+            var stock=Number(result[0].stock);
             if (type === 1) Balance += account;
             else if (type === 2) {
                 if (Balance < account) 
@@ -79,12 +77,12 @@ module.exports = function (app) {
             nowuser.fund=fund;
             nowuser.stock=stock;
             console.log(nowuser);
+            if (operationSuccess){
+                user.update(query_doc,nowuser,function(err,res){
+                    if (err) throw err;
+                    console.log("文档更新成功");
+            })}
         });
-        if (operationSuccess){
-            user.update(query_doc,nowuser,function(err,res){
-                if (err) throw err;
-                console.log("文档更新成功");
-        })}
     
         res.json(operationSuccess);
     });
