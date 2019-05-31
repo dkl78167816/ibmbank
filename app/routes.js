@@ -6,27 +6,18 @@ var path = require('path'); //a module to calculate a path
 module.exports = function (app) {
     // api ---------------------------------------------------------------------
     // login
+    var flag;
     app.post('/api/login', function (req, res) {
-        // use mongoose to get login info in the database
-        //need write connect db and get password & username
         var query_doc = { user_id: req.body.usename, password: req.body.password };
         user.count(query_doc, function(err, doc){
             if(doc === 1){//验证成功,转到mainpage
-                flag=true;
-                res.redirect(200, '/mainpage');
-                res.json(flag);
+                flag = true;
+                
             }else{
-                res.redirect('/login');
-                res.json(flag);
+                flag = false;
             }        
+            res.json(flag);
         });
-        // let password, username;
-        // let login = false;
-        // if (req.body.password === password && req.body.password === username)
-        // {
-        //     login = true;
-        // }
-        // res.json(login);
     });
 
     app.post('/api/information', function (req, res) {

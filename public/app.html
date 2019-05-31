@@ -11,10 +11,11 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <div id="app" style="background-color: azure; height: 900px">
+    <div id="app" style="background-color: azure; height: 1200px">
+
       <div v-if="login === false">
         <el-row style="height: 200px"></el-row>
-        <el-rol>
+        <el-row>
           <el-col :span="6" :offset="9">
             <el-form ref="form" :model="form" label-width="80px">
                 <el-form-item label="账号">
@@ -29,26 +30,47 @@
                 </el-form-item>
             </el-form>
           </el-col>
-        </el-rol>
+        </el-row>
       </div>
-      <div v-if="login">
-          <el-row style="height: 200px"></el-row>
-          <el-rol>
-            <el-col :span="6" :offset="9">
-              <el-form ref="form" :model="form" label-width="80px">
-                  <el-form-item label="账号">
-                      <el-input v-model="form.username"></el-input>
-                  </el-form-item>
-                  <el-form-item label="密码">
-                      <el-input v-model="form.password"></el-input>
-                  </el-form-item>
-                  <el-form-item>
-                      <el-button type="primary" @click="onSubmit">登陆</el-button>
-                      <el-button>注册</el-button>
-                  </el-form-item>
-              </el-form>
+
+      <div v-if="login && !info && !deposit && !transfer && !bank">
+          <el-row style="height: 100px; background-color: blueviolet">
+            <el-col :offset="3" :span="21">
+              <h1>云计算银行web应用</h1>
             </el-col>
-          </el-rol>
+          </el-row>
+          <el-row style="height: 150px">
+            <el-col :offset="3" :span="2">
+              <h2 style="color: chartreuse">欢迎使用</h2>
+            </el-col>
+          </el-row>
+          <el-row style="height: 50px">
+            <el-col :offset="4" :span="3">
+              <el-button type="primary" v-on:click="ope1">查看个人信息</el-button>
+            </el-col>
+            <el-col :offset="2" :span="3">
+              <el-button type="primary" v-on:click="ope2">存取款</el-button>
+            </el-col>
+            <el-col :offset="2" :span="3">
+              <el-button type="primary" v-on:click="ope3">转账</el-button>
+            </el-col>
+            <el-col :offset="2" :span="3">
+              <el-button type="primary" v-on:click="ope4">理财业务</el-button>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div v-if="login && info">
+          <el-row style="height: 100px; background-color: blueviolet">
+            <el-col :offset="3" :span="21">
+              <h1>云计算银行web应用|个人信息</h1>
+            </el-col>
+          </el-row>
+          <el-row style="height: 50px">
+            <el-col :offset="4" :span="3">
+              <span>用户名：{{userinfo.userName}}</span>
+            </el-col>
+          </el-row>
         </div>
     </div>
   <script>
@@ -59,9 +81,20 @@
       data: function(){
         return {
           login: false,
+          info: false,
+          deposit: false,
+          transfer: false,
+          bank: false,
           form: {
             username:'',
             password:''
+          },
+          userinfo: {
+            userName:'',
+            userBalance:'',
+            fund:'',
+            stock:'',
+            fixedTimeDeposit:''
           }
         }
       },
@@ -74,20 +107,34 @@
               password: app.form.password
             })
             .then(function (res) {
-                if (res.data === 'true')
+                if (res.data === 'true'){
                   app.login = true;
+                }else alert("登陆失败，请检查账户名和密码");
             })
-          // if (app.login){
-          //   axios
-          //     .post("/api/login", {
-          //       username: app.form.username, 
-          //       password: app.form.password
-          //     })
-          //     .then(function (res) {
-          //         if (res.data === 'true')
-          //           app.login = true;
-          //     })
-          // }
+        },
+
+        ope1: function(){
+          axios
+            .post("/api/information", {
+              username: app.form.username, 
+            })
+            .then(function (res) {
+              app.userinfo.userName = res.data[0].userName;
+              app.userinfo.userBalance = res.data[0].userBalance;
+              app.userinfo.fund = res.data[0].fund;
+              app.userinfo.stock = res.data[0].stock;
+              app.userinfo.fixedTimeDeposit = res.data[0].dingqi;
+            })  
+        },
+
+        ope2: function(){
+
+        },
+        ope3: function(){
+
+        },
+        ope4: function(){
+
         },
       }
     })
