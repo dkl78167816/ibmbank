@@ -107,7 +107,7 @@
               password: app.form.password
             })
             .then(function (res) {
-                if (res.data === 'true'){
+                if (res.data === true){
                   app.login = true;
                 }else alert("登陆失败，请检查账户名和密码");
             })
@@ -120,8 +120,8 @@
               username: app.form.username, 
             })
             .then(function (res) {
-              app.userinfo.userName = res.data[0].userName;
-              app.userinfo.userBalance = res.data[0].userBalance;
+              app.userinfo.userName = res.data[0].user_id;
+              app.userinfo.userBalance = res.data[0].account;
               app.userinfo.fund = res.data[0].fund;
               app.userinfo.stock = res.data[0].stock;
               app.userinfo.fixedTimeDeposit = res.data[0].dingqi;
