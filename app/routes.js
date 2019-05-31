@@ -86,6 +86,7 @@ module.exports = function (app) {
         let getUser = req.body.username;
         let accepterId = req.body.acceptername;
         let account = Number(req.body.account);
+        console.log(account);
         let result = 0, hasAccepter = true;
         
         var acc_query={user_id:accepterId};
@@ -93,36 +94,31 @@ module.exports = function (app) {
             if(doc===0){
                 hasAccepter = false;
             }
-            console.log("well2");
         });
         if (!hasAccepter) 
             result = 2; 
         else{
-            console.log("well3");
             var userBalance;
             var query_doc = {user_id: getUser};
             user.find(query_doc,function(err,res){
                 userBalance=Number(res[0].account);
-                console.log("well4");
             });
             var accepterBalance;
             user.find(acc_query,function(err,res){
                 accepterBalance=Number(res[0].account);
-                console.log("well5");
             })
             if (account > userBalance) 
                 result = 1;
             else {
-                console.log("well6");
                 result = 3;
                 userBalance -= account;
                 accepterBalance += account;
-
+                console.log(userBalance);
+                console.log(accepterBalance);
+                
                 var userup={account:userBalance};
                 user.update(query_doc,userup,function(err,res){
                     if (err) throw err;
-                    console.log("文档更新成功");
-                    console.log("well7");
                 });
 
                 var up={account:accepterBalance};
