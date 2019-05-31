@@ -44,6 +44,8 @@ module.exports = function (app) {
             var dingQi=result[0].dingqi;
             var fund=result[0].fund;
             var stock=result[0].stock;
+            console.log(result[0]);
+            console.log(account);
             if (type === 1) Balance += account;
             else if (type === 2) {
                 if (Balance < account) 
@@ -76,6 +78,7 @@ module.exports = function (app) {
             nowuser.dingQi=dingQi;
             nowuser.fund=fund;
             nowuser.stock=stock;
+            console.log(nowuser);
         });
         if (operationSuccess){
             user.update(query_doc,nowuser,function(err,res){
