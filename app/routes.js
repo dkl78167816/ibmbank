@@ -86,7 +86,6 @@ module.exports = function (app) {
         let getUser = req.body.username;
         let accepterId = req.body.acceptername;
         let account = Number(req.body.account);
-        console.log(account);
         let result = 0, hasAccepter = true;
         
         var acc_query={user_id:accepterId};
@@ -102,10 +101,12 @@ module.exports = function (app) {
             var query_doc = {user_id: getUser};
             user.find(query_doc,function(err,res){
                 userBalance=Number(res[0].account);
+                console.log(userBalance);
             });
             var accepterBalance;
             user.find(acc_query,function(err,res){
                 accepterBalance=Number(res[0].account);
+                console.log(accepterBalance);
             })
             if (account > userBalance) 
                 result = 1;
@@ -115,7 +116,7 @@ module.exports = function (app) {
                 accepterBalance += account;
                 console.log(userBalance);
                 console.log(accepterBalance);
-                
+
                 var userup={account:userBalance};
                 user.update(query_doc,userup,function(err,res){
                     if (err) throw err;
