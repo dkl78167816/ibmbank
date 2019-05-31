@@ -153,6 +153,6 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, '../public','app.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
     app.get('*', function (req, res) {
-        res.sendFile(path.join(__dirname, '../public/src', '*', '.html')); // load the single view file (angular will handle the page changes on the front-end)
+        res.send(404); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
