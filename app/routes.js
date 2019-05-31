@@ -8,6 +8,8 @@ module.exports = function (app) {
     // login
     var flag;
     app.post('/api/login', function (req, res) {
+        console.log(req.body.usename);
+        console.log(req.body.password);
         var query_doc = { user_id: req.body.usename, password: req.body.password };
         user.count(query_doc, function(err, doc){
             console.log(doc);
