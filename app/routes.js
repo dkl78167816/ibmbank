@@ -13,13 +13,16 @@ module.exports = function (app) {
         user.count(query_doc, function(err, doc){
             if(doc === 1){//验证成功,转到mainpage
                 flag = true;
-                
+                console.log("ddddddddddddd");
             }else{
                 flag = false;
+                console.log("eeeeeeeeeeeee");
             }        
+            console.log("bbbbbbbbbbbb");
             res.json(flag);
         });
-        console.log("fdsfdfs");
+        console.log("ccccccccccccs");
+        res.send(200);
     });
 
     app.post('/api/information', function (req, res) {
