@@ -67,8 +67,12 @@
             </el-col>
           </el-row>
           <el-row style="height: 50px">
-            <el-col :offset="4" :span="3">
+            <el-col :offset="4" :span="16">
               <span>用户名：{{userinfo.userName}}</span>
+              <span>账户余额：{{userinfo.userBalance}}</span>
+              <span>基金：{{userinfo.fund}}</span>
+              <span>股票：{{userinfo.stock}}</span>
+              <span>定期存储：{{userinfo.fixedTimeDeposit}}</span>
             </el-col>
           </el-row>
         </div>
@@ -125,6 +129,7 @@
               app.userinfo.fund = res.data[0].fund;
               app.userinfo.stock = res.data[0].stock;
               app.userinfo.fixedTimeDeposit = res.data[0].dingqi;
+              app.info = true;
             })  
         },
 
