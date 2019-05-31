@@ -20,7 +20,7 @@ user.count(adminname,function(err,doc){
   }
 })
 
-var ins2={user_id:"user1",key:"user1",account:5000,dingqi:120,foud:50,stock:10000};
+var ins2={user_id:"user1",password:"user1",account:5000,dingqi:120,foud:50,stock:10000};
 var username={user_id:"user1"};
 user.count(username,function(err,doc){
   if(doc===0){

@@ -320,7 +320,8 @@
               account: app.accountTransfer
             })
             .then(function (res) {
-              alert(res.data);
+              if (res.data === 0 || res.data === 3) 
+                alert("转账成功");
             })  
         },
 
