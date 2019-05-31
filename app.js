@@ -12,7 +12,6 @@ app.use(express.static('public'));  //use resource from ./public
 
 // routing ============================================
 app.post('/api/login', function (req, res) {
-  res.json(req.body);
   var query_doc = { user_id: req.body.usename, password: req.body.password };
   user.count(query_doc, function(err, doc){
       if(doc === 1){//验证成功,转到mainpage
