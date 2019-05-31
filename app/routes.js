@@ -97,39 +97,37 @@ module.exports = function (app) {
         if (!hasAccepter) 
             result = 2; 
         else{
-            var userBalance;
+            let userBalance;
             var query_doc = {user_id: getUser};
             user.find(query_doc,function(err,res){
                 userBalance=Number(res[0].account);
                 console.log(userBalance);
-            });
-            var accepterBalance;
-            user.find(acc_query,function(err,res){
-                accepterBalance=Number(res[0].account);
-                console.log(accepterBalance);
-            })
-            if (account > userBalance) 
-                result = 1;
-            else {
-                result = 3;
-                userBalance -= account;
-                accepterBalance += account;
-                console.log(userBalance);
-                console.log(accepterBalance);
+                let accepterBalance;
+                user.find(acc_query,function(errr,ress){
+                    accepterBalance=Number(ress[0].account);
+                    console.log(accepterBalance);
+                    if (account > userBalance) 
+                    result = 1;
+                    else {
+                        result = 3;
+                        userBalance -= account;
+                        accepterBalance += account;
+                        console.log(userBalance);
+                        console.log(accepterBalance);
 
-                var userup={account:userBalance};
-                user.update(query_doc,userup,function(err,res){
-                    if (err) throw err;
-                });
+                        var userup={account:userBalance};
+                        user.update(query_doc,userup,function(errrr,resss){
+                            if (errrr) throw errrr;
+                        });
 
-                var up={account:accepterBalance};
-                user.update(acc_query,up,function(err,res){
-                    if (err) throw err;
-                    console.log("文档更新成功");
-                    console.log("well8");
-                });
-                console.log("well9");
-            }
+                        var up={account:accepterBalance};
+                        user.update(acc_query,up,function(errrr,resss){
+                            if (errrr) throw errrr;
+                            console.log("文档更新成功");
+                        });
+                    }
+                })
+            });    
         }    
         res.json(result);
     });
