@@ -89,7 +89,7 @@ module.exports = function (app) {
     app.post('/api/transfer', function (req, res) {
         let getUser = req.body.username;
         let accepterId = req.body.acceptername;
-        let account = req.body.account;
+        let account = Number(req.body.account);
         let result = 0, hasAccepter = true;
         
         var acc_query={user_id:accepterId};
@@ -104,7 +104,7 @@ module.exports = function (app) {
             var userBalance;
             var query_doc = {user_id: getUser};
             user.find(query_doc,function(err,res){
-                userBalance=res[0].account;
+                userBalance=Number(res[0].account);
             });
             var accepterBalance;
             user.find(acc_query,function(err,res){
